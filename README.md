@@ -5,7 +5,7 @@
 
 # Retry
 
-Retry a function execution with specific intervals
+Retry a function execution with specific intervals with panic recovery
 
 Make sure to read the docs to understand how this package works and what do
 expected from it.
