@@ -23,7 +23,6 @@ func TestRetry(t *testing.T) {
 		makeTryFnPanic := func(message string) func(int, int) error {
 			return func(int, int) error {
 				panic(errors.New(message))
-				return nil
 			}
 		}
 

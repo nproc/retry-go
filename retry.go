@@ -8,6 +8,7 @@ import (
 )
 
 var (
+	// ErrTryFnNil is returned when the `TryFn` is nil
 	ErrTryFnNil = errors.New("TryFen can not be nil")
 )
 
