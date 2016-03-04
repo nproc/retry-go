@@ -64,7 +64,7 @@ func TestRetry(t *testing.T) {
 				backoff := []time.Duration{interval, interval, interval, interval}
 				start := time.Now()
 				err := retry.WithBackoffArray(backoff, func(a, l int) error {
-					if a != l {
+					if a < l-1 {
 						return fmt.Errorf("Error %d", a)
 					}
 					return nil
@@ -118,7 +118,7 @@ func TestRetry(t *testing.T) {
 			Convey("it should wait based on the intervals in the BackoffArray", func() {
 				start := time.Now()
 				err := retry.WithFixedInterval(10*time.Millisecond, 4, func(a, l int) error {
-					if a != l {
+					if a < l-1 {
 						return fmt.Errorf("Error %d", a)
 					}
 					return nil

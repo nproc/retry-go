@@ -13,11 +13,12 @@ To know more about the ErrorGroup go to https://github.com/nproc/errorgroup-go
 
 How many times TryFn will execute?
 
-The general rule is len(BackoffArray) + 1 This happens because the
-BackoffArray is an array of intervals and make no sense to have an interval
-after the last execution. Because of this every time the last interval is
-extracted from the BackoffArray the TryFn is executed one more time. If you
-want to run the function only one time you should give a BackoffArray with
-zero items.
+The general rule is 'len(BackoffArray) + 1'
+
+This happens because the BackoffArray is an array of intervals and makes no
+sense to have an interval after the last execution. Because of this every
+time the last interval is extracted from the BackoffArray the TryFn is
+executed one more time. If you want to run the function only one time you
+should give a BackoffArray with zero items.
 */
 package retry

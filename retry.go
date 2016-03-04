@@ -16,7 +16,7 @@ var (
 //
 // It receives as arguments:
 // - the number of this attempt '[0..len(BackoffArray]'
-// - the limit of executions 'len(BackoffArray)'
+// - the limit of executions 'len(BackoffArray) + 1'
 type TryFn func(attempt, limit int) error
 
 // BackoffArray an vector of interval to wait between each retry
@@ -51,7 +51,7 @@ func cloneBackoffArray(backoff BackoffArray) BackoffArray {
 }
 
 func loop(backoff BackoffArray, fn TryFn) error {
-	limit := len(backoff)
+	limit := len(backoff) + 1
 
 	if fn == nil {
 		return ErrTryFnNil
