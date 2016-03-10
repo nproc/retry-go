@@ -41,6 +41,14 @@ func main() {
 }
 ```
 
+## Tests
+
+```
+go get -u -t github.com/nproc/retry-go
+cd $GOPATH/src/github.com/nproc/retry-go
+go test ./...
+```
+
 ## License
 
 MIT
