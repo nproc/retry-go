@@ -14,26 +14,26 @@ import (
 func TestRetry(t *testing.T) {
 	Convey("Retry", t, func() {
 		singleZeroInterval := []time.Duration{0}
-		tryFnSuccess := func(int, int) error { return nil }
-		makeTryFnFail := func(message string) func(int, int) error {
+		tryFuncSuccess := func(int, int) error { return nil }
+		makeTryFuncFail := func(message string) func(int, int) error {
 			return func(int, int) error {
 				return errors.New(message)
 			}
 		}
-		makeTryFnPanic := func(message string) func(int, int) error {
+		makeTryFuncPanic := func(message string) func(int, int) error {
 			return func(int, int) error {
 				panic(errors.New(message))
 			}
 		}
 
 		Convey("WithBackoffArray", func() {
-			Convey("it should return nil if TryFn returns nil", func() {
-				err := retry.WithBackoffArray(singleZeroInterval, tryFnSuccess)
+			Convey("it should return nil if TryFunc returns nil", func() {
+				err := retry.WithBackoffArray(singleZeroInterval, tryFuncSuccess)
 				So(err, ShouldBeNil)
 			})
 
-			Convey("it should return the errors returned by TryFn in a ErrorGroup", func() {
-				err := retry.WithBackoffArray(nil, makeTryFnFail("Error A"))
+			Convey("it should return the errors returned by TryFunc in a ErrorGroup", func() {
+				err := retry.WithBackoffArray(nil, makeTryFuncFail("Error A"))
 				So(err, ShouldHaveSameTypeAs, errorgroup.New(nil))
 				errGrp := err.(*errorgroup.ErrorGroup)
 				So(errGrp.Errors, ShouldHaveLength, 1)
@@ -41,7 +41,7 @@ func TestRetry(t *testing.T) {
 			})
 
 			Convey("it should recover from panic", func() {
-				err := retry.WithBackoffArray(nil, makeTryFnPanic("Panic A"))
+				err := retry.WithBackoffArray(nil, makeTryFuncPanic("Panic A"))
 				So(err, ShouldHaveSameTypeAs, errorgroup.New(nil))
 				errGrp := err.(*errorgroup.ErrorGroup)
 				So(errGrp.Errors, ShouldHaveLength, 1)
@@ -76,20 +76,20 @@ func TestRetry(t *testing.T) {
 				So(diff, ShouldBeLessThan, 50*time.Millisecond)
 			})
 
-			Convey("it should return an error if TryFn is nil", func() {
+			Convey("it should return an error if TryFunc is nil", func() {
 				err := retry.WithBackoffArray(singleZeroInterval, nil)
-				So(err, ShouldEqual, retry.ErrTryFnNil)
+				So(err, ShouldEqual, retry.ErrTryFuncNil)
 			})
 		})
 
 		Convey("WithFixedInterval", func() {
-			Convey("it should return nil if TryFn returns nil", func() {
-				err := retry.WithFixedInterval(0, 1, tryFnSuccess)
+			Convey("it should return nil if TryFunc returns nil", func() {
+				err := retry.WithFixedInterval(0, 1, tryFuncSuccess)
 				So(err, ShouldBeNil)
 			})
 
-			Convey("it should return the errors returned by TryFn in a ErrorGroup", func() {
-				err := retry.WithFixedInterval(0, 0, makeTryFnFail("Error A"))
+			Convey("it should return the errors returned by TryFunc in a ErrorGroup", func() {
+				err := retry.WithFixedInterval(0, 0, makeTryFuncFail("Error A"))
 				So(err, ShouldHaveSameTypeAs, errorgroup.New(nil))
 				errGrp := err.(*errorgroup.ErrorGroup)
 				So(errGrp.Errors, ShouldHaveLength, 1)
@@ -97,7 +97,7 @@ func TestRetry(t *testing.T) {
 			})
 
 			Convey("it should recover from panic", func() {
-				err := retry.WithFixedInterval(0, 0, makeTryFnPanic("Panic A"))
+				err := retry.WithFixedInterval(0, 0, makeTryFuncPanic("Panic A"))
 				So(err, ShouldHaveSameTypeAs, errorgroup.New(nil))
 				errGrp := err.(*errorgroup.ErrorGroup)
 				So(errGrp.Errors, ShouldHaveLength, 1)
@@ -130,9 +130,9 @@ func TestRetry(t *testing.T) {
 				So(diff, ShouldBeLessThan, 50*time.Millisecond)
 			})
 
-			Convey("it should return an error if TryFn is nil", func() {
+			Convey("it should return an error if TryFunc is nil", func() {
 				err := retry.WithFixedInterval(1, 1, nil)
-				So(err, ShouldEqual, retry.ErrTryFnNil)
+				So(err, ShouldEqual, retry.ErrTryFuncNil)
 			})
 		})
 	})

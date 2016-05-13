@@ -8,33 +8,33 @@ import (
 )
 
 var (
-	// ErrTryFnNil is returned when the TryFn is nil
-	ErrTryFnNil = errors.New("TryFn can not be nil")
+	// ErrTryFuncNil is returned when the TryFunc is nil
+	ErrTryFuncNil = errors.New("TryFunc can not be nil")
 )
 
-// TryFn is the function to try to execute.
+// TryFunc is the function to try to execute.
 //
 // It receives as arguments:
 // - the number of this attempt '[0..len(BackoffArray]'
 // - the limit of executions 'len(BackoffArray) + 1'
-type TryFn func(attempt, limit int) error
+type TryFunc func(attempt, limit int) error
 
 // BackoffArray an vector of interval to wait between each retry
 type BackoffArray []time.Duration
 
-// WithBackoffArray runs the TryFn with intervals from the given BackoffArray
+// WithBackoffArray runs the TryFunc with intervals from the given BackoffArray
 //
-// It is important to notice that the TryFn will run 'len(BackoffArray) + 1'
+// It is important to notice that the TryFunc will run 'len(BackoffArray) + 1'
 // times
-func WithBackoffArray(backoff BackoffArray, fn TryFn) error {
+func WithBackoffArray(backoff BackoffArray, fn TryFunc) error {
 	return loop(cloneBackoffArray(backoff), fn)
 }
 
-// WithFixedInterval runs the TryFn with a BackoffArray created with the
+// WithFixedInterval runs the TryFunc with a BackoffArray created with the
 // given 'interval' repeated 'repeat' times
 //
-// It is important to notice that the TryFn will run 'repeat + 1' times
-func WithFixedInterval(interval time.Duration, repeat int, fn TryFn) error {
+// It is important to notice that the TryFunc will run 'repeat + 1' times
+func WithFixedInterval(interval time.Duration, repeat int, fn TryFunc) error {
 	backoff := make([]time.Duration, repeat)
 	for i := 0; i < repeat; i++ {
 		backoff[i] = interval
@@ -50,11 +50,11 @@ func cloneBackoffArray(backoff BackoffArray) BackoffArray {
 	return clone
 }
 
-func loop(backoff BackoffArray, fn TryFn) error {
+func loop(backoff BackoffArray, fn TryFunc) error {
 	limit := len(backoff) + 1
 
 	if fn == nil {
-		return ErrTryFnNil
+		return ErrTryFuncNil
 	}
 
 	errs := []error{}
@@ -76,7 +76,7 @@ func loop(backoff BackoffArray, fn TryFn) error {
 	return errorgroup.New(errs)
 }
 
-func run(fn TryFn, attempt, limit int) (err error) {
+func run(fn TryFunc, attempt, limit int) (err error) {
 	defer func() {
 		if e := recover(); e != nil {
 			err = e.(error)
