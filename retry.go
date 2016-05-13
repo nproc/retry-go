@@ -9,7 +9,7 @@ import (
 
 var (
 	// ErrTryFnNil is returned when the TryFn is nil
-	ErrTryFnNil = errors.New("TryFen can not be nil")
+	ErrTryFnNil = errors.New("TryFn can not be nil")
 )
 
 // TryFn is the function to try to execute.
