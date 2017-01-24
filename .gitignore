@@ -90,3 +90,4 @@ _testmain.go
 *.prof
 
 vendor/
+coverage.txt
