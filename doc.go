@@ -9,7 +9,7 @@ errors in a ErrorGroup.
 If the TryFunc return a nil error at any moment it will be considered a
 successful execution and nil will be returned by the 'With*' function.
 
-To know more about the ErrorGroup go to https://github.com/nproc/errorgroup-go
+To know more about the ErrorGroup go to https://github.com/txgruppi/errorgroup-go
 
 How many times TryFunc will execute?
 

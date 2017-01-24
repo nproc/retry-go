@@ -6,9 +6,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/nproc/errorgroup-go"
-	"github.com/nproc/retry-go"
 	. "github.com/smartystreets/goconvey/convey"
+	"github.com/txgruppi/errorgroup-go"
+	"github.com/txgruppi/retry-go"
 )
 
 func TestRetry(t *testing.T) {

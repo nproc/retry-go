@@ -1,7 +1,7 @@
-[![GoDoc](https://img.shields.io/badge/godoc-reference-blue.svg?style=flat-square)](https://godoc.org/github.com/nproc/retry-go)
+[![GoDoc](https://img.shields.io/badge/godoc-reference-blue.svg?style=flat-square)](https://godoc.org/github.com/txgruppi/retry-go)
 ![Codeship](https://img.shields.io/codeship/3e5c23f0-c2d6-0133-421c-025eedb952b8.svg?style=flat-square)
-[![Codecov](https://img.shields.io/codecov/c/github/nproc/retry-go.svg?style=flat-square)](https://codecov.io/github/nproc/retry-go)
-[![Go Report Card](https://img.shields.io/badge/go_report-A+-brightgreen.svg?style=flat-square)](https://goreportcard.com/report/github.com/nproc/retry-go)
+[![Codecov](https://img.shields.io/codecov/c/github/txgruppi/retry-go.svg?style=flat-square)](https://codecov.io/github/txgruppi/retry-go)
+[![Go Report Card](https://img.shields.io/badge/go_report-A+-brightgreen.svg?style=flat-square)](https://goreportcard.com/report/github.com/txgruppi/retry-go)
 
 # Retry
 
@@ -13,7 +13,7 @@ expected from it.
 ## Installation
 
 ```
-go get -u github.com/nproc/retry-go
+go get -u github.com/txgruppi/retry-go
 ```
 
 ## Example
@@ -25,7 +25,7 @@ import (
   "log"
   "time"
 
-  "github.com/nproc/retry-go"
+  "github.com/txgruppi/retry-go"
 )
 
 func main() {
@@ -44,8 +44,8 @@ func main() {
 ## Tests
 
 ```
-go get -u -t github.com/nproc/retry-go
-cd $GOPATH/src/github.com/nproc/retry-go
+go get -u -t github.com/txgruppi/retry-go
+cd $GOPATH/src/github.com/txgruppi/retry-go
 go test ./...
 ```
 

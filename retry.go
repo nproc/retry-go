@@ -4,7 +4,7 @@ import (
 	"errors"
 	"time"
 
-	"github.com/nproc/errorgroup-go"
+	"github.com/txgruppi/errorgroup-go"
 )
 
 var (
