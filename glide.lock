@@ -1,0 +1,23 @@
+hash: a17f633f5407ed7a997dcd5fdfe9dd084282b8c01894155172c79075c798cca7
+updated: 2017-01-24T20:02:22.607248404-02:00
+imports:
+- name: github.com/txgruppi/errorgroup-go
+  version: 8f39fc50159d1e1ec703ef3d3b6a0729516a1385
+testImports:
+- name: github.com/gopherjs/gopherjs
+  version: 2967252ace8b112e63a5b5879e92de915fe731f4
+  subpackages:
+  - js
+- name: github.com/jtolds/gls
+  version: bb0351aa7eb6f322f32667d51375f26a2bca6628
+- name: github.com/smartystreets/assertions
+  version: 26acb9229f421449ac63d014995b282d59261a8b
+  subpackages:
+  - internal/go-render/render
+  - internal/oglematchers
+- name: github.com/smartystreets/goconvey
+  version: d4c757aa9afd1e2fc1832aaab209b5794eb336e1
+  subpackages:
+  - convey
+  - convey/gotest
+  - convey/reporting

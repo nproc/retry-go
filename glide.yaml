@@ -1,0 +1,8 @@
+package: github.com/txgruppi/retry-go
+import:
+- package: github.com/txgruppi/errorgroup-go
+testImport:
+- package: github.com/smartystreets/goconvey
+  version: ~1.6.2
+  subpackages:
+  - convey
